@@ -8,6 +8,9 @@ abstract class BaseService {
   ///Use Endpoint for specific endpoints
   Future<dynamic> getResponse(String endpoint);
 
+  //For using a full url
+  Future<dynamic> getResponseForAbsoluteUrl(String url);
+
   dynamic handleResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
@@ -30,4 +33,5 @@ abstract class BaseService {
 
 class Endpoint {
   static const String pokemon = "pokemon/?limit=905";
+  static const String pokemon_detail = "pokemon/";
 }

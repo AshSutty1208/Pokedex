@@ -5,6 +5,8 @@ import 'package:grouped_list/grouped_list.dart';
 
 import 'package:pokedex/pokedex/model/pokemon.dart';
 
+import '../../screens/pokedex_detail_screen.dart';
+
 class PokedexListWidget extends StatefulWidget {
   final List<Pokemon> _pokemonList;
 
@@ -89,7 +91,12 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PokedexDetailScreen(pokemon.url)),
+                    );
+                  },
                   child: _buildPokemonListItem(pokemon),
                 ));
           },

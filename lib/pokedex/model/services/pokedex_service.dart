@@ -16,4 +16,18 @@ class PokedexService extends BaseService {
 
     return responseJson;
   }
+
+  @override
+  Future getResponseForAbsoluteUrl(String url) async {
+    dynamic responseJson;
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      responseJson = super.handleResponse(response);
+    } catch(e) {
+      print("Error in http request: $e");
+    }
+
+    return responseJson;
+  }
 }

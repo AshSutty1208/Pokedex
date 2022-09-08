@@ -1,14 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex/view/widgets/pokemon_list_widget.dart';
+import 'package:pokedex/pokedex/view/widgets/pokedex_list/pokedex_list_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'package:pokedex/pokedex/model/apis/api_response.dart';
 import 'package:pokedex/pokedex/model/pokemon.dart';
-import 'package:pokedex/pokedex/view/widgets/pokemon_list_container_widget.dart';
 
-import '../../view_model/pokedex_list_view_model.dart';
+import '../../../view_model/pokedex_list_view_model.dart';
 
 class PokedexListContainerWidget extends StatefulWidget {
   const PokedexListContainerWidget({Key? key}) : super(key: key);

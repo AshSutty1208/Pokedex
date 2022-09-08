@@ -1,13 +1,46 @@
-/// Class that represents a Pokemon
-class PokemonDetail {
-  final int? id;
-  final String? name;
+import 'package:pokedex/pokedex/model/pokemon_details/abilities.dart';
 
-  PokemonDetail({this.id,
-    this.name});
+import '../extensions/string_extension.dart';
+
+/// Class that represents a Pokemons Specific Detail
+class PokemonDetail {
+  final int id;
+  final String name;
+  final int baseExperience;
+  final int weight;
+  final int height;
+  final bool isDefault;
+  final String locationAreasUrl;
+  // final List<Abilities> abilities;
+
+  PokemonDetail({required this.weight,
+    required this.baseExperience,
+    required this.height,
+    required this.isDefault,
+    required this.locationAreasUrl,
+    required this.id,
+    required this.name});
 
   factory PokemonDetail.fromJson(Map<String, dynamic> json) {
+    String name = (json['name'] as String).capitalize();
+
     return PokemonDetail(id: json['id'] as int,
-        name: json['name'] as String?);
+      name: name,
+      weight: json['weight'] as int,
+      height: json['height'] as int,
+      baseExperience: json['base_experience'] as int,
+      isDefault: json['is_default'] as bool,
+      locationAreasUrl: json['location_area_encounters'] as String);
+  }
+
+  @override
+  String toString() {
+    return "ID: $id"
+        " Name: $name"
+        " baseExperience: $baseExperience"
+        " Height: $height"
+        " Weight: $weight"
+        " isDefault: $isDefault"
+        " locationAreasUrl: $locationAreasUrl";
   }
 }

@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 
 import 'package:pokedex/pokedex/model/pokemon.dart';
+import 'package:pokedex/pokedex/model/pokemon_detail.dart';
 import 'package:pokedex/pokedex/model/services/base_service.dart';
 import 'package:pokedex/pokedex/model/services/pokedex_service.dart';
 
@@ -15,5 +16,12 @@ class PokedexRepository {
         print(pokemon.toString());
       }
       return pokemonList;
+    }
+
+    Future<PokemonDetail> fetchPokemonDetail(String pokemonUrl) async {
+      dynamic response = await _pokedexService.getResponseForAbsoluteUrl(pokemonUrl);
+      PokemonDetail pokemonDetail = PokemonDetail.fromJson(response);
+      print(pokemonDetail.toString());
+      return pokemonDetail;
     }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/pokedex/view_model/pokedex_detail_view_model.dart';
 import 'package:pokedex/pokedex/view_model/pokedex_list_view_model.dart';
-import 'package:pokedex/pokedex/view/pokedex_list_screen.dart';
+import 'package:pokedex/pokedex/view/screens/pokedex_list_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:pokedex/pokedex/model/pokemon.dart';
@@ -15,7 +16,8 @@ class PokedexApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: PokedexListViewModel())
+        ChangeNotifierProvider.value(value: PokedexListViewModel()),
+        ChangeNotifierProvider.value(value: PokedexDetailViewModel())
       ],
       child: MaterialApp(
         title: "Pokedex",

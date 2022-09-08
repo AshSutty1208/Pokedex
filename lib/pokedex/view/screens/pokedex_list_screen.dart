@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
-import '../view_model/pokedex_list_view_model.dart';
-import 'widgets/pokemon_list_container_widget.dart';
+import '../../view_model/pokedex_list_view_model.dart';
+import '../widgets/pokedex_list/pokedex_list_container_widget.dart';
 
 class PokedexListScreen extends StatefulWidget {
   const PokedexListScreen({Key? key}) : super(key: key);
@@ -19,9 +18,11 @@ class _PokedexListScreenState extends State<PokedexListScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1), () {
-      Provider.of<PokedexListViewModel>(context,
-          listen: false)
-          .fetchPokemonListData();
+      setState(() {
+        Provider.of<PokedexListViewModel>(context,
+            listen: false)
+            .fetchPokemonListData();
+      });
     });
     super.initState();
   }
