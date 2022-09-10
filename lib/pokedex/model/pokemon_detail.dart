@@ -1,4 +1,6 @@
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:pokedex/pokedex/model/pokemon_details/abilities.dart';
+import 'package:pokedex/pokedex/model/pokemon_details/pokemon_type.dart';
 
 import '../extensions/string_extension.dart';
 
@@ -11,6 +13,7 @@ class PokemonDetail {
   final int height;
   final bool isDefault;
   final String locationAreasUrl;
+  final List<PokemonType> pokemonTypes;
   // final List<Abilities> abilities;
 
   PokemonDetail({required this.weight,
@@ -19,10 +22,14 @@ class PokemonDetail {
     required this.isDefault,
     required this.locationAreasUrl,
     required this.id,
-    required this.name});
+    required this.name,
+    required this.pokemonTypes});
 
   factory PokemonDetail.fromJson(Map<String, dynamic> json) {
     String name = (json['name'] as String).capitalize();
+
+    final jsonTypes = json['types'] as List;
+    List<PokemonType> parsedTypes = jsonTypes.map((json) => PokemonType.fromJson(json)).toList();
 
     return PokemonDetail(id: json['id'] as int,
       name: name,
@@ -30,7 +37,8 @@ class PokemonDetail {
       height: json['height'] as int,
       baseExperience: json['base_experience'] as int,
       isDefault: json['is_default'] as bool,
-      locationAreasUrl: json['location_area_encounters'] as String);
+      locationAreasUrl: json['location_area_encounters'] as String,
+      pokemonTypes: parsedTypes);
   }
 
   @override
@@ -41,6 +49,7 @@ class PokemonDetail {
         " Height: $height"
         " Weight: $weight"
         " isDefault: $isDefault"
-        " locationAreasUrl: $locationAreasUrl";
+        " locationAreasUrl: $locationAreasUrl"
+        " types: $pokemonTypes";
   }
 }

@@ -38,15 +38,15 @@ class PokedexListViewModel with ChangeNotifier {
   }
 
   void filterPokemonListBySearchResults(String value) {
-    if (value.isEmpty) {
-      _searchFilteredPokemonList = List.empty();
-      return;
-    }
+    _searchFilteredPokemonList = List.empty();
+    String lowercasedValue = value.toLowerCase();
 
     _searchFilteredPokemonList = List.from(pokemonList);
     _searchFilteredPokemonList!.removeWhere((element) {
-      return !element.name.contains(value);
+      String elementLowercase = element.name.toLowerCase();
+      return !elementLowercase.contains(lowercasedValue);
     });
+
     notifyListeners();
   }
 }

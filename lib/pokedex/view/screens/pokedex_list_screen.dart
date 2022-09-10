@@ -7,29 +7,21 @@ import 'package:provider/provider.dart';
 import '../../view_model/pokedex_list_view_model.dart';
 import '../widgets/pokedex_list/pokedex_list_container_widget.dart';
 
-class PokedexListScreen extends StatefulWidget {
+class PokedexListScreen extends StatelessWidget {
   const PokedexListScreen({Key? key}) : super(key: key);
 
-  @override
-  _PokedexListScreenState createState() => _PokedexListScreenState();
-}
-
-class _PokedexListScreenState extends State<PokedexListScreen> {
-  @override
-  void initState() {
+  _getPokemonList(BuildContext buildContext) async {
     Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        Provider.of<PokedexListViewModel>(context,
-            listen: false)
-            .fetchPokemonListData();
-      });
+      Provider.of<PokedexListViewModel>(buildContext,
+          listen: false)
+          .fetchPokemonListData();
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final _inputController = TextEditingController();
+    _getPokemonList(context);
 
     return Scaffold(
       appBar: AppBar(

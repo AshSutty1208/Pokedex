@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:pokedex/pokedex/consts/app_design_constants/app_colours.dart';
 
 import 'package:pokedex/pokedex/model/pokemon.dart';
 
+import '../../../consts/app_consts.dart';
 import '../../screens/pokedex_detail_screen.dart';
 
 class PokedexListWidget extends StatefulWidget {
@@ -30,6 +32,18 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: Row(
         children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Theme.of(context).colorScheme.secondary.withAlpha(40)),
+                  child: Padding(padding: const EdgeInsets.all(4),
+                  child: Image.network(
+                      "${AppConsts.pokemonImageUrl}${pokemon.pokedexNumber}.png"))),
+            ),
+            flex: 2,
+          ),
           Expanded(
             child: Text(pokemon.pokedexNumber.toString()),
             flex: 1,
@@ -77,8 +91,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
               child: Text(
                 value,
                 textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -94,7 +107,9 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PokedexDetailScreen(pokemon.url)),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PokedexDetailScreen(pokemon.url)),
                     );
                   },
                   child: _buildPokemonListItem(pokemon),

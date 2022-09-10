@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pokedex/pokedex/model/apis/api_response.dart';
+import 'package:pokedex/pokedex/model/pokemon_detail.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_model/pokedex_detail_view_model.dart';
-import '../widgets/pokedex_detail/pokedex_detail_widget.dart';
+import '../widgets/pokedex_detail/pokedex_detail_container_widget.dart';
 
-class PokedexDetailScreen extends StatefulWidget {
+class PokedexDetailScreen extends StatelessWidget {
   final String chosenPokemonsUrl;
 
-  PokedexDetailScreen(this.chosenPokemonsUrl);
+  const PokedexDetailScreen(this.chosenPokemonsUrl, {Key? key}) : super(key: key);
 
-  @override
-  _PokedexDetailScreenState createState() => _PokedexDetailScreenState();
-}
-
-class _PokedexDetailScreenState extends State<PokedexDetailScreen> {
-  @override
-  void initState() {
-    Future.delayed(const Duration(seconds: 1), () {
-      Provider.of<PokedexDetailViewModel>(context, listen: false)
-          .fetchPokemonDetailData(widget.chosenPokemonsUrl);
-    });
-    super.initState();
+  _getPokemonDetail(BuildContext buildContext) {
+    Provider.of<PokedexDetailViewModel>(buildContext,
+        listen: false)
+        .fetchPokemonDetailData(chosenPokemonsUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: PokedexDetailWidget());
+    _getPokemonDetail(context);
+
+    return Scaffold(body: PokedexDetailContainerWidget());
   }
 }

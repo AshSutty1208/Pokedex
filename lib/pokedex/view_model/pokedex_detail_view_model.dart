@@ -11,23 +11,25 @@ class PokedexDetailViewModel with ChangeNotifier {
     return _apiResponse;
   }
 
-  PokemonDetail? _pokemon;
+  PokemonDetail? _pokemonDetail;
 
   PokemonDetail? get pokemonDetail {
-    return _pokemon;
+    return _pokemonDetail;
   }
 
   Future<void> fetchPokemonDetailData(pokemonUrl) async {
     _apiResponse = ApiResponse.loading('Fetching pokemon data');
     notifyListeners();
     try {
-      PokemonDetail pokemon = await PokedexRepository().fetchPokemonDetail(pokemonUrl);
+      PokemonDetail pokemon =
+          await PokedexRepository().fetchPokemonDetail(pokemonUrl);
+      _pokemonDetail = pokemon;
       _apiResponse = ApiResponse.completed(pokemonDetail);
-      _pokemon = pokemon;
+      notifyListeners();
     } catch (e) {
       _apiResponse = ApiResponse.error(e.toString());
       print(e);
+      notifyListeners();
     }
-    notifyListeners();
   }
 }
