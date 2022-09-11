@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokedex/pokedex/view/widgets/pokedex_list/pokedex_list_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -69,7 +70,7 @@ class _PokedexListContainerWidgetState extends State<PokedexListContainerWidget>
 
     switch (apiResponse.status) {
       case Status.LOADING:
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: SpinKitWave(color: Colors.redAccent, size: 30,));
       case Status.COMPLETED:
         return buildPokemonList(context, listToUse, showNoSearchResultsWidget);
       case Status.ERROR:

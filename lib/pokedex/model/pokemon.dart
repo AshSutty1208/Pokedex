@@ -14,9 +14,9 @@ class Pokemon {
   final String name;
   final String url;
   final String? generation;
-  final int? pokedexNumber;
+  final int pokedexNumber;
 
-  Pokemon({required this.name, required this.url, this.generation, this.pokedexNumber});
+  Pokemon({required this.name, required this.url, this.generation, required this.pokedexNumber});
 
   factory Pokemon.fromJson(Map<String, dynamic> json, int index) {
     //Just as an FYI. I hate this as much as you, but the API gives me no information other than the name O.o

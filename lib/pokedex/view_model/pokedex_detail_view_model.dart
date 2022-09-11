@@ -1,14 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pokedex/pokedex/model/apis/api_response.dart';
 import 'package:pokedex/pokedex/model/pokemon_detail.dart';
+import 'package:pokedex/pokedex/model/pokemon_details/pokemon_ability.dart';
+import 'package:pokedex/pokedex/model/pokemon_details/pokemon_ability_detail.dart';
 
 import '../model/pokemon_repository.dart';
 
 class PokedexDetailViewModel with ChangeNotifier {
-  ApiResponse _apiResponse = ApiResponse.initial('Empty data');
+  ApiResponse _pokemonDetailResponse = ApiResponse.initial('Empty data');
 
-  ApiResponse get response {
-    return _apiResponse;
+  ApiResponse get pokemonDetailApiResponse {
+    return _pokemonDetailResponse;
+  }
+
+  ApiResponse _pokemonAbilityResponse = ApiResponse.initial('Empty data');
+
+  ApiResponse get pokemonAbilityApiResponse {
+    return _pokemonAbilityResponse;
   }
 
   PokemonDetail? _pokemonDetail;
@@ -18,16 +26,16 @@ class PokedexDetailViewModel with ChangeNotifier {
   }
 
   Future<void> fetchPokemonDetailData(pokemonUrl) async {
-    _apiResponse = ApiResponse.loading('Fetching pokemon data');
+    _pokemonDetailResponse = ApiResponse.loading('Fetching pokemon data');
     notifyListeners();
     try {
       PokemonDetail pokemon =
           await PokedexRepository().fetchPokemonDetail(pokemonUrl);
       _pokemonDetail = pokemon;
-      _apiResponse = ApiResponse.completed(pokemonDetail);
+      _pokemonDetailResponse = ApiResponse.completed(pokemonDetail);
       notifyListeners();
     } catch (e) {
-      _apiResponse = ApiResponse.error(e.toString());
+      _pokemonDetailResponse = ApiResponse.error(e.toString());
       print(e);
       notifyListeners();
     }

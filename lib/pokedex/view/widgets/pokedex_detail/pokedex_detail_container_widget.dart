@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokedex/pokedex/model/pokemon_detail.dart';
 import 'package:pokedex/pokedex/view/widgets/pokedex_detail/pokedex_detail_widget.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,7 @@ class _PokedexDetailContainerWidgetState extends State<PokedexDetailContainerWid
 
     switch (apiResponse.status) {
       case Status.LOADING:
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: SpinKitWave(color: Colors.redAccent, size: 30,));
       case Status.COMPLETED:
         if (pokemonDetail == null) {
           return const Center(
@@ -36,7 +37,7 @@ class _PokedexDetailContainerWidgetState extends State<PokedexDetailContainerWid
           child: Text('Please try again later...'),
         );
       case Status.INITIAL:
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: SpinKitWave(color: Colors.redAccent, size: 30,));
       default:
         return Container();
     }
@@ -45,7 +46,7 @@ class _PokedexDetailContainerWidgetState extends State<PokedexDetailContainerWid
   @override
   Widget build(BuildContext context) {
     ApiResponse apiResponse =
-        Provider.of<PokedexDetailViewModel>(context).response;
+        Provider.of<PokedexDetailViewModel>(context).pokemonDetailApiResponse;
     PokemonDetail? pokemonDetail =
         Provider.of<PokedexDetailViewModel>(context).pokemonDetail;
 
