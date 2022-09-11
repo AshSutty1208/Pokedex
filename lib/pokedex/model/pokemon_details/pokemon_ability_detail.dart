@@ -15,7 +15,6 @@ class PokemonAbilityDetail {
       for (var element in (json['effect_entries'] as List)) {
         Map<String, dynamic> languageObj = element['language'];
         if (languageObj['name'] == "en") {
-          // Map<String, dynamic> effectObj = element['effect'];
           parsedEffectEntry = element['short_effect'];
         }
       }
