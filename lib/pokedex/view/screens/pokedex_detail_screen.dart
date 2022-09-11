@@ -12,16 +12,14 @@ class PokedexDetailScreen extends StatelessWidget {
 
   const PokedexDetailScreen(this.chosenPokemonsUrl, {Key? key}) : super(key: key);
 
-  _getPokemonDetail(BuildContext buildContext) {
-    Provider.of<PokedexDetailViewModel>(buildContext,
-        listen: false)
-        .fetchPokemonDetailData(chosenPokemonsUrl);
-  }
-
   @override
   Widget build(BuildContext context) {
-    _getPokemonDetail(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<PokedexDetailViewModel>(context,
+          listen: false)
+          .fetchPokemonDetailData(chosenPokemonsUrl);
+    });
 
-    return Scaffold(body: PokedexDetailContainerWidget());
+    return Scaffold(body: PokedexDetailContainerWidget(chosenPokemonsUrl));
   }
 }

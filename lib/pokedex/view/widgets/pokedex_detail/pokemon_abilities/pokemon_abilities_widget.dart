@@ -4,6 +4,9 @@ import 'package:pokedex/pokedex/consts/app_design_constants/text_styles.dart';
 import 'package:pokedex/pokedex/model/pokemon_detail.dart';
 import 'package:pokedex/pokedex/model/pokemon_details/pokemon_abilities.dart';
 import 'package:pokedex/pokedex/view/widgets/pokedex_detail/pokemon_abilities/pokemon_ability_container.dart';
+import 'package:pokedex/pokedex/view_model/pokedex_detail_view_model.dart';
+import 'package:pokedex/pokedex/view_model/poxedex_abilities_view_model.dart';
+import 'package:provider/provider.dart';
 
 class PokemonAbilitiesWidget extends StatefulWidget {
   final PokemonDetail pokemonDetail;
@@ -16,7 +19,13 @@ class PokemonAbilitiesWidget extends StatefulWidget {
 
 class _PokemonAbilitiesWidgetState extends State<PokemonAbilitiesWidget> {
   Widget _pokemonAbilityDetailsWidget(BuildContext context) {
-    return Container(
+    return WillPopScope(
+        onWillPop: () async {
+          Provider.of<PokedexAbilitiesViewModel>(context,
+              listen: false).disposeProvidedValues();
+          return true;
+        },
+        child: Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,7 +49,7 @@ class _PokemonAbilitiesWidgetState extends State<PokemonAbilitiesWidget> {
               children: _getPokemonAbilityWidgets(context)),
         ],
       ),
-    );
+    ));
   }
 
   List<Widget> _getPokemonAbilityWidgets(BuildContext context) {
@@ -64,8 +73,6 @@ class _PokemonAbilitiesWidgetState extends State<PokemonAbilitiesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // _getPokemonAbility(context);
-
     return _pokemonAbilityDetailsWidget(context);
   }
 }

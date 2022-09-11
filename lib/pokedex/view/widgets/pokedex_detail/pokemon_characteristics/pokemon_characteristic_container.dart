@@ -11,8 +11,10 @@ class PokemonCharacteristicContainer extends StatelessWidget {
   const PokemonCharacteristicContainer(this.pokemonSpecies, {Key? key}) : super(key: key);
 
   _getPokemonSpeciesDetail(BuildContext buildContext) {
-    Provider.of<PokedexSpeciesViewModel>(buildContext,
-        listen: false).fetchPokemonSpeciesData(pokemonSpecies.url);
+    Future.delayed(const Duration(seconds: 1), (){
+      Provider.of<PokedexSpeciesViewModel>(buildContext,
+          listen: false).fetchPokemonSpeciesData(pokemonSpecies.url);
+    });
   }
 
   @override

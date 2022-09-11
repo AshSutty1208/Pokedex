@@ -12,16 +12,12 @@ import '../widgets/pokedex_list/pokedex_list_container_widget.dart';
 class PokedexListScreen extends StatelessWidget {
   const PokedexListScreen({Key? key}) : super(key: key);
 
-  _getPokemonList(BuildContext buildContext) async {
-    Future.delayed(const Duration(seconds: 1), () {
-      Provider.of<PokedexListViewModel>(buildContext, listen: false)
-          .fetchPokemonListData();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    _getPokemonList(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<PokedexListViewModel>(context, listen: false)
+          .fetchPokemonListData();
+    });
 
     return Scaffold(
       appBar: AppBar(

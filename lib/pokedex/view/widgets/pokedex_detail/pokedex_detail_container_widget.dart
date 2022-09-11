@@ -12,6 +12,10 @@ import 'package:pokedex/pokedex/model/pokemon.dart';
 import '../../../view_model/pokedex_detail_view_model.dart';
 
 class PokedexDetailContainerWidget extends StatefulWidget {
+  final String chosenPokemonsUrl;
+
+  PokedexDetailContainerWidget(this.chosenPokemonsUrl);
+
   @override
   _PokedexDetailContainerWidgetState createState() => _PokedexDetailContainerWidgetState();
 }

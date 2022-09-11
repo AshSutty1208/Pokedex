@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pokedex/pokedex/model/apis/api_response.dart';
 import 'package:pokedex/pokedex/model/pokemon_details/pokemon_ability_detail.dart';
+import 'package:pokedex/pokedex/view_model/base_view_model.dart';
 
 import '../model/pokemon_repository.dart';
 
-class PokedexAbilitiesViewModel with ChangeNotifier {
+class PokedexAbilitiesViewModel extends BaseViewModel with ChangeNotifier {
   ApiResponse _pokemonAbilityResponse = ApiResponse.initial('Empty data');
 
   ApiResponse get pokemonAbilityApiResponse {
@@ -31,5 +32,12 @@ class PokedexAbilitiesViewModel with ChangeNotifier {
       print(e);
       notifyListeners();
     }
+  }
+
+  @override
+  void disposeProvidedValues() {
+    _pokemonAbilityDetail.clear();
+    _pokemonAbilityResponse = ApiResponse.initial('Empty data');
+    notifyListeners();
   }
 }

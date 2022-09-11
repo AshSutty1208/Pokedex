@@ -10,14 +10,12 @@ class PokemonAbilityContainer extends StatelessWidget {
 
   const PokemonAbilityContainer(this.pokemonAbility, {Key? key}) : super(key: key);
 
-  _getPokemonDetail(BuildContext buildContext) {
-    Provider.of<PokedexAbilitiesViewModel>(buildContext,
-        listen: false).fetchPokemonAbilityData(pokemonAbility.url);
-  }
-
   @override
   Widget build(BuildContext context) {
-    _getPokemonDetail(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<PokedexAbilitiesViewModel>(context,
+          listen: false).fetchPokemonAbilityData(pokemonAbility.url);
+    });
 
     return PokemonAbilityWidget(pokemonAbility.name);
   }
