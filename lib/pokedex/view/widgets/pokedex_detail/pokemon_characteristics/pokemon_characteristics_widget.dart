@@ -46,8 +46,8 @@ class _PokemonCharacteristicsWidgetState
         ),
       ),
       onWillPop: () async {
-        Provider.of<PokedexSpeciesViewModel>(context, listen: false)
-            .disposeProvidedValues();
+        Provider.of<PokedexSpeciesViewModel>(context,
+            listen: false).disposeProvidedValues();
         return true;
       },
     );

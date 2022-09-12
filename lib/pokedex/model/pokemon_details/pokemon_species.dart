@@ -11,8 +11,8 @@ class PokemonSpecies {
   factory PokemonSpecies.fromJson(Map<String, dynamic> json, int id) {
     return PokemonSpecies(
       id: id,
-      url: json['url'] as String,
-      name: json['name'] as String,
+      url: json['url'] ??= "",
+      name: json['name'] ??= "No Name Found",
     );
   }
 

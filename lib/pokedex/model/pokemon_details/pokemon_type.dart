@@ -21,7 +21,7 @@ class PokemonType {
 
     return PokemonType(
       pokemonTypeColor: ColorsUtil.getColorForPokemonType(name),
-      url: typeJson['url'] as String,
+      url: typeJson['url'] ??= "",
       name: name,
     );
   }

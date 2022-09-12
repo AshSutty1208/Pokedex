@@ -42,11 +42,11 @@ class PokemonDetail {
 
     return PokemonDetail(id: json['id'] as int,
       name: name,
-      weight: json['weight'] as int,
-      height: json['height'] as int,
-      baseExperience: json['base_experience'] as int,
-      isDefault: json['is_default'] as bool,
-      locationAreasUrl: json['location_area_encounters'] as String,
+      weight: json['weight'] ??= 0,
+      height: json['height'] ??= 0,
+      baseExperience: json['base_experience'] ??= 0,
+      isDefault: json['is_default'] ??= false,
+      locationAreasUrl: json['location_area_encounters'] ??= "",
       pokemonTypes: parsedTypes,
       pokemonAbilities: parsedAbilities,
       pokemonSpecies: pokemonSpecies);

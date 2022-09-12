@@ -42,7 +42,7 @@ class Pokemon {
 
     String name = (json['name'] as String).capitalize();
 
-    return Pokemon(name: name, url: json['url'], generation: generation, pokedexNumber: actualIndex);
+    return Pokemon(name: name, url: json['url'] ??= "", generation: generation, pokedexNumber: actualIndex);
   }
 
   @override

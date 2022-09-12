@@ -15,8 +15,8 @@ class PokemonAbilities {
 
     PokemonAbility parsedAbility = PokemonAbility.fromJson(json['ability']);
 
-    return PokemonAbilities(isHidden: json['is_hidden'] as bool,
-        slot: json['slot'] as int, ability: parsedAbility);
+    return PokemonAbilities(isHidden: json['is_hidden'] ??= false,
+        slot: json['slot'] ??= -1, ability: parsedAbility);
   }
 
   @override
