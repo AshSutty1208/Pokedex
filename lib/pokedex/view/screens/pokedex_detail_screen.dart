@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pokedex/pokedex/model/apis/api_response.dart';
-import 'package:pokedex/pokedex/model/pokemon_detail.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_model/pokedex_detail_view_model.dart';

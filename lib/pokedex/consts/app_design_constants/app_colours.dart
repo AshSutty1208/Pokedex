@@ -7,6 +7,8 @@ abstract class AppColours {
   static const Color cardBackground = Color(0xFFFDFDFD);
   static const Color cardTextTitle = Color(0xC8F44336);
   static const Color cardTextBody = Color(0x96000000);
+  static const Color shinyColour = Color(0xFFFFC107);
+
 
   ///POKEMON TYPE COLORS
   static const Color pokemonTypeColorNormal = Color(0xFFA8A77A);

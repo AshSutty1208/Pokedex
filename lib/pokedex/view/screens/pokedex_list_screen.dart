@@ -1,8 +1,5 @@
-import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:pokedex/pokedex/consts/app_design_constants/app_colours.dart';
 import 'package:pokedex/pokedex/view/widgets/pokedex_list/pokedex_list_search_widget.dart';
 import 'package:provider/provider.dart';
 
