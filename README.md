@@ -21,7 +21,3 @@ The background of the list is coloured to represent the pokemons types. For exam
 The characteristics and abilities are both in seperate stateful widges which allows them to hold their own context. This enables them to have their own state which in turn means that an api response for both can be used and the loading indicators with proper indication of when the pokemons information is available.
 
 The abilities and characteristics are all in seperate card views which are coded to be reusable allowing for reuse in all of the detail list items.
-
-### The coding itself
-
-DISCLAIMER: there is some controversial stuff in the code happening as the api is not as dynamic as i hoped. For example the setting of the pokemons evolutions in the original list. Also, the mapping of the pokemons type colours to its pokemon detail object.
