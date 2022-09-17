@@ -2,15 +2,11 @@
  
 ## Descriptions:
 
-### List View
+### Grid view
 
-The app starts and calls the pokeapi to fetch the list of pokemon. This then sets the widgets and rebuilds the list composition to show a list of pokemon in a grouped list (Grouped by evolution).
+The app starts and opens with a grid view front and center with each pokemon and pokmon number visible in each of the pokemons container. Each grid view is a material widget type so it is slightly elevated giving it a boxed card look.
 
-This list is complete with images for the pokemon on the left which are fetched from pokeapi.
-
-The search bar is fully functional and you can search by either the name or the number. You can clear the results and edit text box with the bin icon.
-
-All views in the app use a custom FadeIn animation widget which gives the views a nice coming in vibe when they are created. This applies to the list items too and if you scroll quickly down the list it looks very cool when the list items are coming in curved.
+The search bar is fully functional and you can search by either the name or the pokedex number. You can clear the results and edit text box with the bin icon.
 
 ### Detail view
 
