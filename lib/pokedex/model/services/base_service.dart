@@ -32,6 +32,6 @@ abstract class BaseService {
 }
 
 class Endpoint {
-  static const String pokemon = "pokemon/?limit=905";
+  static const String pokemon = "pokemon/?limit=898";
   static const String pokemon_detail = "pokemon/";
 }
