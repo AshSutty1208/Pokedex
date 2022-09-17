@@ -15,8 +15,9 @@ class Pokemon {
   final String url;
   final String? generation;
   final int pokedexNumber;
+  final String displayPokedexNum;
 
-  Pokemon({required this.name, required this.url, this.generation, required this.pokedexNumber});
+  Pokemon({required this.name, required this.url, this.generation, required this.pokedexNumber, required this.displayPokedexNum});
 
   factory Pokemon.fromJson(Map<String, dynamic> json, int index) {
     //Just as an FYI. I hate this as much as you, but the API gives me no information other than the name O.o
@@ -42,7 +43,20 @@ class Pokemon {
 
     String name = (json['name'] as String).capitalize();
 
-    return Pokemon(name: name, url: json['url'] ??= "", generation: generation, pokedexNumber: actualIndex);
+    String pokedexDisplayNumber = "";
+    if (actualIndex < 10) {
+      pokedexDisplayNumber = "#00$actualIndex";
+    } else if (actualIndex < 100) {
+      pokedexDisplayNumber = "#0$actualIndex";
+    } else {
+      pokedexDisplayNumber = "#$actualIndex";
+    }
+
+
+    return Pokemon(name: name, url: json['url'] ??= "",
+        generation: generation,
+        pokedexNumber: actualIndex,
+        displayPokedexNum: pokedexDisplayNumber);
   }
 
   @override

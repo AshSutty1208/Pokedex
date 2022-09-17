@@ -44,8 +44,8 @@ class PokedexListViewModel with ChangeNotifier {
     if (valueAsInt != null) {
       _searchFilteredPokemonList = List.from(pokemonList);
       _searchFilteredPokemonList!.removeWhere((element) {
-        int pokedexNumber = element.pokedexNumber;
-        return pokedexNumber != valueAsInt;
+        String pokedexNumber = element.pokedexNumber.toString();
+        return !pokedexNumber.contains(value);
       });
     } else if (value is String) {
       String lowercasedValue = value.toLowerCase();

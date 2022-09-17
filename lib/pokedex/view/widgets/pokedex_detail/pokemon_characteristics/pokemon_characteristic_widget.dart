@@ -91,7 +91,7 @@ class PokemonCharacteristicWidget extends StatelessWidget {
       case Status.LOADING:
         return Container(
             constraints:
-            BoxConstraints(minWidth: double.infinity, minHeight: 200),
+            const BoxConstraints(minWidth: double.infinity, minHeight: 200),
             child: const Center(
                 child: SpinKitWave(
                   color: AppColours.secondary,
@@ -111,7 +111,7 @@ class PokemonCharacteristicWidget extends StatelessWidget {
       case Status.INITIAL:
         return Container(
             constraints:
-                BoxConstraints(minWidth: double.infinity, minHeight: 200),
+                const BoxConstraints(minWidth: double.infinity, minHeight: 200),
             child: const Center(
                 child: SpinKitWave(
               color: AppColours.secondary,

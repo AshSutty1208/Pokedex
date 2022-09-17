@@ -37,9 +37,10 @@ dependencies:
   http: ^0.13.1
   provider: ^5.0.0
   collection:
-  grouped_list: ^4.2.0
   animations:
   flutter_spinkit: ^5.1.0
+  sticky_headers: ^0.3.0+2
+  scroll_to_index: any
 
 dev_dependencies:
   flutter_test:

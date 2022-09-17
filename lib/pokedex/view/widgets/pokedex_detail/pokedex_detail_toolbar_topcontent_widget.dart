@@ -75,37 +75,36 @@ class _PokedexDetailToolbarTopContentWidgetState
                     alignment: Alignment.topCenter,
                     padding: const EdgeInsets.only(left: 10),
                     constraints: BoxConstraints(
-                        maxHeight: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.17),
+                        minHeight: MediaQuery.of(context).padding.top + 130,
+                        maxHeight: MediaQuery.of(context).padding.top + 130
+                    ),
                     decoration: BoxDecoration(
                       color: AppColours.secondary,
                       border: Border(
-                          bottom: BorderSide(color: borderColour, width: 12)),
+                          bottom: BorderSide(color: borderColour, width: 8)),
                     ),
                   ),
                   Container(
                     alignment: Alignment.bottomCenter,
                     constraints: BoxConstraints(
-                        maxHeight: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.17 + 60),
+                        minHeight: MediaQuery.of(context).padding.top + 204,
+                        maxHeight: MediaQuery.of(context).padding.top + 204
+                    ),
                     child: Container(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(8),
                       constraints: const BoxConstraints(
-                          minWidth: 136,
-                          minHeight: 136,
-                          maxHeight: 136,
-                          maxWidth: 136),
+                          minWidth: 160,
+                          minHeight: 160,
+                          maxHeight: 160,
+                          maxWidth: 160),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColours.background,
-                        border: Border.all(color: borderColour, width: 12),
+                        border: Border.all(color: borderColour, width: 8),
                       ),
                       child: Image.network(
                           "$pokemonUrl${widget.pokemonDetail.id}.png",
+                          fit: BoxFit.fill,
                           errorBuilder: (BuildContext context, Object exception,
                               StackTrace? stackTrace) {
                             return const Icon(
