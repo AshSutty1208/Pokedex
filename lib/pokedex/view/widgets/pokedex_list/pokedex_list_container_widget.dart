@@ -8,31 +8,40 @@ import 'package:provider/provider.dart';
 import 'package:pokedex/pokedex/model/apis/api_response.dart';
 import 'package:pokedex/pokedex/model/pokemon.dart';
 
+import '../../../consts/app_design_constants/app_colours.dart';
 import '../../../view_model/pokedex_list_view_model.dart';
 
 class PokedexListContainerWidget extends StatefulWidget {
   const PokedexListContainerWidget({Key? key}) : super(key: key);
 
   @override
-  _PokedexListContainerWidgetState createState() => _PokedexListContainerWidgetState();
+  _PokedexListContainerWidgetState createState() =>
+      _PokedexListContainerWidgetState();
 }
 
-class _PokedexListContainerWidgetState extends State<PokedexListContainerWidget> {
-  Widget buildPokemonList(BuildContext context,
-      List<Pokemon> finalPokemonList,
+class _PokedexListContainerWidgetState
+    extends State<PokedexListContainerWidget> {
+  Widget buildPokemonList(BuildContext context, List<Pokemon> finalPokemonList,
       bool showNoSearchResultsWidget) {
-    if(showNoSearchResultsWidget) {
+    if (showNoSearchResultsWidget) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Expanded(
-            flex: 1,
-            child: Text("Your search came back with no results...",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          const Flexible(
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                "Your search came back with no results...\nShowing full list.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppColours.secondary),
+              ),
             ),
           ),
-          Expanded(
+          Flexible(
             flex: 9,
             child: PokedexListWidget(finalPokemonList),
           ),
@@ -51,14 +60,12 @@ class _PokedexListContainerWidgetState extends State<PokedexListContainerWidget>
     }
   }
 
-  Widget getPokemonWidget(BuildContext context,
-      ApiResponse apiResponse,
-      List<Pokemon> initialPokemonList,
-      List<Pokemon>? filteredPokemonList) {
+  Widget getPokemonWidget(BuildContext context, ApiResponse apiResponse,
+      List<Pokemon> initialPokemonList, List<Pokemon>? filteredPokemonList) {
     List<Pokemon> listToUse;
     bool showNoSearchResultsWidget = false;
     if (filteredPokemonList != null) {
-      if(filteredPokemonList.isEmpty) {
+      if (filteredPokemonList.isEmpty) {
         listToUse = initialPokemonList;
         showNoSearchResultsWidget = true;
       } else {
@@ -70,7 +77,11 @@ class _PokedexListContainerWidgetState extends State<PokedexListContainerWidget>
 
     switch (apiResponse.status) {
       case Status.LOADING:
-        return const Center(child: SpinKitWave(color: Colors.redAccent, size: 30,));
+        return const Center(
+            child: SpinKitWave(
+          color: Colors.redAccent,
+          size: 30,
+        ));
       case Status.COMPLETED:
         return buildPokemonList(context, listToUse, showNoSearchResultsWidget);
       case Status.ERROR:
@@ -92,6 +103,7 @@ class _PokedexListContainerWidgetState extends State<PokedexListContainerWidget>
     List<Pokemon>? filteredPokemonList =
         Provider.of<PokedexListViewModel>(context).searchFilteredPokemonList;
 
-    return getPokemonWidget(context, apiResponse, initialPokemonList, filteredPokemonList);
+    return getPokemonWidget(
+        context, apiResponse, initialPokemonList, filteredPokemonList);
   }
 }

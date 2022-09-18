@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex/view/widgets/pokedex_list/pokedex_list_search_widget.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +21,10 @@ class PokedexListScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          PokedexListSearchWidget(),
+          Material(
+            elevation: 4,
+            child: PokedexListSearchWidget()
+          ),
           const Expanded(child: PokedexListContainerWidget()),
         ],
       ),
