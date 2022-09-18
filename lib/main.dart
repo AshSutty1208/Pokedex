@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pokedex/pokedex/consts/app_design_constants/app_colours.dart';
 import 'package:pokedex/pokedex/view_model/pokedex_detail_view_model.dart';
 import 'package:pokedex/pokedex/view_model/pokedex_list_view_model.dart';
 import 'package:pokedex/pokedex/view/screens/pokedex_list_screen.dart';
@@ -16,6 +18,9 @@ class PokedexApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: AppColours.secondary
+    ));
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: PokedexListViewModel()),

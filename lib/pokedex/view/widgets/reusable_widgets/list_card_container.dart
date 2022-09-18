@@ -10,7 +10,7 @@ class ListCardContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-        fadeInDuration: 1000,
+        fadeInDuration: 500,
         child: Container(
           constraints: const BoxConstraints(minWidth: double.infinity),
           child: Card(
