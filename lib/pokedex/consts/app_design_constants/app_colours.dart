@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 abstract class AppColours {
   static const Color primary = Colors.red;
   static const Color secondary = Colors.redAccent;
+  static const Color bodyBackground = Color(0xB2FF5252);
   static const Color background = Color(0xFFDADADA);
   static const Color cardBackground = Color(0xFFFDFDFD);
   static const Color cardTextTitle = Color(0xC8F44336);
   static const Color cardTextBody = Color(0x96000000);
+  static const Color bodySubtitle = Color(0xB3FFFFFF);
   static const Color shinyColour = Color(0xFFFFC107);
 
 
