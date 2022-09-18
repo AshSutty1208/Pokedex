@@ -8,6 +8,8 @@ The app starts and opens with a grid view front and center with each pokemon and
 
 The search bar is fully functional and you can search by either the name or the pokedex number. You can clear the results and edit text box with the bin icon.
 
+You can also use the auto scroller on the right of the list to auto scroll to a generation of your choosing. You can remove this view by pressing the arrow icons. You can make it appear again by swiping left on the list.
+
 ### Detail view
 
 Once you've clicked on a pokemon the app goes and fetches the pokemons details using the pokeapi and returns a certain amount of details such as the pokemons characteristics and abilities.
