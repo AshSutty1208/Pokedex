@@ -87,26 +87,32 @@ class _PokedexDetailToolbarTopContentWidgetState
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColours.background,
-                    border: Border.all(color: borderColour, width: 8),
+                    border: Border.all(
+                        color: borderColour,
+                        width: 8,
+                        strokeAlign: StrokeAlign.outside),
                   ),
-                  child: Image.network(
-                      "$pokemonUrl${widget.pokemonDetail.id}.png",
-                      fit: BoxFit.fill, errorBuilder: (BuildContext context,
-                          Object exception, StackTrace? stackTrace) {
-                    return const Icon(
-                      Icons.info_sharp,
-                      color: Colors.red,
-                    );
-                  }, loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return const Center(
-                      child: SpinKitWave(
-                        color: Colors.redAccent,
-                        size: 20,
-                      ),
-                    );
-                  }),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Image.network(
+                        "$pokemonUrl${widget.pokemonDetail.id}.png",
+                        fit: BoxFit.fill, errorBuilder: (BuildContext context,
+                            Object exception, StackTrace? stackTrace) {
+                      return const Icon(
+                        Icons.info_sharp,
+                        color: Colors.red,
+                      );
+                    }, loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(
+                        child: SpinKitWave(
+                          color: Colors.redAccent,
+                          size: 20,
+                        ),
+                      );
+                    }),
+                  ),
                 ),
               ),
               Container(

@@ -47,7 +47,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
+                  padding: const EdgeInsets.only(bottom: 42),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: CachedNetworkImage(
