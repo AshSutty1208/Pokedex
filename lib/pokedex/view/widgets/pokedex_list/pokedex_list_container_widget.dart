@@ -22,7 +22,7 @@ class PokedexListContainerWidget extends StatefulWidget {
 class _PokedexListContainerWidgetState
     extends State<PokedexListContainerWidget> {
   Widget buildPokemonList(BuildContext context, List<Pokemon> finalPokemonList,
-      bool showNoSearchResultsWidget) {
+      bool showNoSearchResultsWidget, bool shouldShowScroller) {
     if (showNoSearchResultsWidget) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -42,8 +42,8 @@ class _PokedexListContainerWidgetState
             ),
           ),
           Flexible(
-            flex: 9,
-            child: PokedexListWidget(finalPokemonList),
+            flex: 8,
+            child: PokedexListWidget(finalPokemonList, shouldShowScroller),
           ),
         ],
       );
@@ -53,7 +53,7 @@ class _PokedexListContainerWidgetState
         children: [
           Expanded(
             flex: 8,
-            child: PokedexListWidget(finalPokemonList),
+            child: PokedexListWidget(finalPokemonList, shouldShowScroller),
           ),
         ],
       );
@@ -64,15 +64,19 @@ class _PokedexListContainerWidgetState
       List<Pokemon> initialPokemonList, List<Pokemon>? filteredPokemonList) {
     List<Pokemon> listToUse;
     bool showNoSearchResultsWidget = false;
+    bool shouldShowScroller;
     if (filteredPokemonList != null) {
       if (filteredPokemonList.isEmpty) {
         listToUse = initialPokemonList;
         showNoSearchResultsWidget = true;
+        shouldShowScroller = true;
       } else {
         listToUse = filteredPokemonList;
+        shouldShowScroller = false;
       }
     } else {
       listToUse = initialPokemonList;
+      shouldShowScroller = true;
     }
 
     switch (apiResponse.status) {
@@ -83,7 +87,7 @@ class _PokedexListContainerWidgetState
           size: 30,
         ));
       case Status.COMPLETED:
-        return buildPokemonList(context, listToUse, showNoSearchResultsWidget);
+        return buildPokemonList(context, listToUse, showNoSearchResultsWidget, shouldShowScroller);
       case Status.ERROR:
         return const Center(
           child: Text('Please try again later...'),

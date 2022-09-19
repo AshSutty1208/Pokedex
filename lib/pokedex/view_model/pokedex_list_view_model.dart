@@ -37,24 +37,26 @@ class PokedexListViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void filterPokemonListBySearchResults(dynamic value) {
-    _searchFilteredPokemonList = List.empty();
+  void filterPokemonListBySearchResults(String value) {
+    _searchFilteredPokemonList = null;
 
-    var valueAsInt = int.tryParse(value);
-    if (valueAsInt != null) {
-      _searchFilteredPokemonList = List.from(pokemonList);
-      _searchFilteredPokemonList!.removeWhere((element) {
-        String pokedexNumber = element.pokedexNumber.toString();
-        return !pokedexNumber.contains(value);
-      });
-    } else if (value is String) {
-      String lowercasedValue = value.toLowerCase();
+    if (value.isNotEmpty) {
+      var valueAsInt = int.tryParse(value);
+      if (valueAsInt != null) {
+        _searchFilteredPokemonList = List.from(pokemonList);
+        _searchFilteredPokemonList!.removeWhere((element) {
+          String pokedexNumber = element.pokedexNumber.toString();
+          return !pokedexNumber.contains(value);
+        });
+      } else {
+        String lowercasedValue = value.toLowerCase();
 
-      _searchFilteredPokemonList = List.from(pokemonList);
-      _searchFilteredPokemonList!.removeWhere((element) {
-        String elementLowercase = element.name.toLowerCase();
-        return !elementLowercase.contains(lowercasedValue);
-      });
+        _searchFilteredPokemonList = List.from(pokemonList);
+        _searchFilteredPokemonList!.removeWhere((element) {
+          String elementLowercase = element.name.toLowerCase();
+          return !elementLowercase.contains(lowercasedValue);
+        });
+      }
     }
 
     notifyListeners();

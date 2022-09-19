@@ -13,8 +13,9 @@ import '../animation_widgets/fade_in.dart';
 
 class PokedexListWidget extends StatefulWidget {
   final List<Pokemon> _pokemonList;
+  final bool shouldShowScroller;
 
-  const PokedexListWidget(this._pokemonList);
+  const PokedexListWidget(this._pokemonList, this.shouldShowScroller);
 
   @override
   _PokedexListWidgetState createState() => _PokedexListWidgetState();
@@ -22,7 +23,14 @@ class PokedexListWidget extends StatefulWidget {
 
 class _PokedexListWidgetState extends State<PokedexListWidget> {
   final AutoScrollController _controller = AutoScrollController();
-  bool isVisible = true;
+  late bool initialVisibility;
+  bool? localVisibility;
+
+  @override
+  void initState() {
+    initialVisibility = widget.shouldShowScroller;
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -133,6 +141,13 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    localVisibility ??= initialVisibility;
+
+    if (initialVisibility != widget.shouldShowScroller) {
+      initialVisibility = widget.shouldShowScroller;
+      localVisibility = widget.shouldShowScroller;
+    }
+
     return Row(
       children: [
         Flexible(
@@ -140,9 +155,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
           child: GestureDetector(
             onHorizontalDragEnd: (dragEndDetails) {
               setState(() {
-                if (!isVisible) {
-                  isVisible = true;
-                }
+                  localVisibility = false;
               });
             },
             child: Padding(
@@ -185,7 +198,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
           ),
         ),
         Visibility(
-          visible: isVisible,
+          visible: localVisibility!,
           child: SizedBox(
             width: 50,
             height: MediaQuery.of(context).size.height,
@@ -196,9 +209,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if (isVisible) {
-                          isVisible = false;
-                        }
+                        localVisibility = false;
                       });
                     },
                     icon: const Icon(
@@ -210,9 +221,7 @@ class _PokedexListWidgetState extends State<PokedexListWidget> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if (isVisible) {
-                          isVisible = false;
-                        }
+                        localVisibility = false;
                       });
                     },
                     icon: const Icon(
