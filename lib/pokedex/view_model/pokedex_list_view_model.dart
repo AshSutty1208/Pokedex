@@ -61,8 +61,7 @@ class PokedexListViewModel with ChangeNotifier {
   }
 
   void clearPokemonListSearch() {
-    _searchFilteredPokemonList = List.empty();
-    _searchFilteredPokemonList = List.from(pokemonList);
+    _searchFilteredPokemonList = null;
 
     notifyListeners();
   }
