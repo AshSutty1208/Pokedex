@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -94,24 +95,21 @@ class _PokedexDetailToolbarTopContentWidgetState
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(14),
-                    child: Image.network(
-                        "$pokemonUrl${widget.pokemonDetail.id}.png",
-                        fit: BoxFit.fill, errorBuilder: (BuildContext context,
-                            Object exception, StackTrace? stackTrace) {
-                      return const Icon(
-                        Icons.info_sharp,
-                        color: Colors.red,
-                      );
-                    }, loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const Center(
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "$pokemonUrl${widget.pokemonDetail.id}.png",
+                      fit: BoxFit.contain,
+                      placeholder: (context, url) => const Center(
                         child: SpinKitWave(
-                          color: Colors.redAccent,
-                          size: 20,
+                          color: AppColours.secondary,
+                          size: 24,
                         ),
-                      );
-                    }),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.error_outline,
+                        color: AppColours.secondary,
+                      ),
+                    ),
                   ),
                 ),
               ),
